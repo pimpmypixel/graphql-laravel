@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL\Queries;
+namespace App\GraphQL\Queries\User;
 
 use App\Models\User;
 use GraphQL\Type\Definition\Type;
@@ -9,7 +9,7 @@ use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query;
 use Rebing\GraphQL\Support\SelectFields;
 
-class UsersQuery extends Query
+class Users extends Query
 {
     protected $attributes = [
         'name' => 'users',

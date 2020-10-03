@@ -1,13 +1,13 @@
 <?php
 
-namespace App\GraphQL\Mutations;
+namespace App\GraphQL\Mutations\User;
 
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Mutation;
 use App\Models\User;
 
-class NewUserMutation extends Mutation
+class NewUser extends Mutation
 {
     protected $attributes = [
         'name' => 'NewUser'
