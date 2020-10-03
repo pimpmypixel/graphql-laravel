@@ -1,0 +1,61 @@
+version: "3"
+#ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+services:
+  # php:
+  #   container_name: app
+  #   image: registry.userneeds.com/devops/un-php-apache/7-4-dev:latest
+  #   env_file:
+  #     - ./application/.env
+  #   environment:
+  #     # Set this ip to your own
+  #     # i.e. export MYLANIP=$(ip -o route get to 8.8.8.8 | sed -n 's/.*src \([0-9.]\+\).*/\1/p')
+  #     XDEBUG_CONFIG: remote_host=${MYLANIP}
+  #     # get server name: File | Settings | Languages & Frameworks | PHP | Servers
+  #     PHP_IDE_CONFIG: serverName=docker_uncp
+  #     PHP_MEMORY_LIMIT: 8G
+  #     memory_limit: 8G
+  #     COMPOSER_MEMORY_LIMIT: 4G
+  #   hostname: php
+  #   domainname: local
+  #   depends_on:
+  #     - mysql
+  #     # - redis
+  #   links:
+  #     - mysql
+  #     # - redis
+  #   ports:
+  #     - 8000:80
+  #   volumes:
+  #     - ./application:/var/www/laravel:rw
+  #     - ./devops/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+  #     - $HOME/.docker_zsh_history:/root/.zsh_history.new:rw
+  # redis:
+  #   container_name: redis
+  #   image: redis
+  #   hostname: redis
+  #   domainname: local
+  #   ports:
+  #     - 6379:6379
+  mysql:
+    image: mysql:8
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: graphql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - my-db:/var/lib/mysql:rw
+volumes:
+  my-db: {}
+  application:
+    driver: local
+    driver_opts:
+      type: none
+      device: $PWD
+      o: bind
