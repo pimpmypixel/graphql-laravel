@@ -34,15 +34,16 @@ class UsersType extends GraphQLType
             'products' => [
                 'type'          => Type::listOf(GraphQL::type('products')),
                 'description' => 'The products of the user',
+
                 // query
-                // 'args'          => [
-                //     'title' => [
-                //         'type' => Type::string(),
-                //     ],
-                // ],
-                // 'query'         => function (array $args, $query, $ctx) {
-                //     return $query->where('posts.title', "=", $args['title']);
-                // }
+                'args'          => [
+                    'title' => [
+                        'type' => Type::string(),
+                    ],
+                ],
+                'query'         => function (array $args, $query, $ctx) {
+                    return $query->where('products.title',"=", $args['title']);
+                }
             ]
         ];
     }

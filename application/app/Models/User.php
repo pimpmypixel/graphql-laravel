@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Model
 {
@@ -19,7 +18,7 @@ class User extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    public function Products()
+    public function products()
     {
         return $this->hasMany(Product::class);
     }
