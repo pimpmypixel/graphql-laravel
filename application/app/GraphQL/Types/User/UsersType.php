@@ -7,7 +7,7 @@ use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
-class Users extends GraphQLType
+class UsersType extends GraphQLType
 {
     protected $attributes = [
         'name' => 'Users',
@@ -29,6 +29,20 @@ class Users extends GraphQLType
             'name' => [
                 'type' => Type::string(),
                 'description' => 'The name of the user'
+            ],
+            // realation
+            'products' => [
+                'type'          => Type::listOf(GraphQL::type('products')),
+                'description' => 'The products of the user',
+                // query
+                // 'args'          => [
+                //     'title' => [
+                //         'type' => Type::string(),
+                //     ],
+                // ],
+                // 'query'         => function (array $args, $query, $ctx) {
+                //     return $query->where('posts.title', "=", $args['title']);
+                // }
             ]
         ];
     }

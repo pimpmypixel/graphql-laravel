@@ -15,7 +15,7 @@ class DeleteUser extends Mutation
 
     public function type(): Type
     {
-        return GraphQL::type('users');
+        return Type::boolean();
     }
 
     public function args(): array
@@ -30,11 +30,7 @@ class DeleteUser extends Mutation
 
     public function resolve($root, $args): bool
     {
-        $user = User::whereId($args['id']);
-        if (!$user) {
-            return null;
-        }
-        $deleted = $user->delete();
-        return $$deleted;
+        $user = User::findOrFail($args['id']);
+        return  $user->delete() ? true : false;
     }
 }

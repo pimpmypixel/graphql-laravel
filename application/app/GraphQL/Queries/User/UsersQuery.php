@@ -9,7 +9,7 @@ use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query;
 use Rebing\GraphQL\Support\SelectFields;
 
-class Users extends Query
+class UsersQuery extends Query
 {
     protected $attributes = [
         'name' => 'users',
@@ -20,7 +20,7 @@ class Users extends Query
     {
         return Type::listOf(GraphQL::type('users'));
     }
-    
+
     public function args(): array
     {
         return [
@@ -38,8 +38,6 @@ class Users extends Query
 
     public function resolve($root, $args, $fields): Collection
     {
-        // dd(func_get_args());
-        
         $where = function ($query) use ($args) {
             if (isset($args['id'])) {
                 $query->where('id', $args['id']);
@@ -54,6 +52,6 @@ class Users extends Query
         //     ->select($fields->getSelect())
         //     ->get();
 
-        return User::all();
+        return User::where($where)->get();
     }
 }

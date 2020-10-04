@@ -3,8 +3,10 @@
 use App\GraphQL\Mutations\User\NewUser;
 use App\GraphQL\Mutations\User\UpdateUser;
 use App\GraphQL\Mutations\User\DeleteUser;
-use App\GraphQL\Queries\User\Users;
-use App\GraphQL\Types\User\Users as UsersType;
+use App\GraphQL\Queries\User\UsersQuery;
+use App\GraphQL\Types\User\UsersType;
+use App\GraphQL\Types\Product\ProductsType;
+use App\Models\Product;
 
 return [
     'prefix' => 'graphql',
@@ -15,19 +17,20 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                'User' => Users::class,
-                'Users' => Users::class,
+                'Users' => UsersQuery::class,
             ],
             'mutation' => [
                 'NewUser' => NewUser::class,
                 'UpdateUser' => UpdateUser::class,
                 'DeleteUser' => DeleteUser::class,
             ],
-            'middleware' => []
+            'middleware' => [],
+            'method' => ['get', 'post'],
         ],
     ],
     'types' => [
         'users'  => UsersType::class,
+        'products'  => ProductsType::class,
     ],
     'error_formatter' => ['\Rebing\GraphQL\GraphQL', 'formatError'],
     'params_key'    => 'params'
