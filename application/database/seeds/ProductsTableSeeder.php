@@ -20,7 +20,7 @@ class ProductsTableSeeder extends Seeder
                 'title' => $names[$index],
                 'price' => rand(1000,5000),
                 'description' => $faker->text(),
-                'user_id' => rand(0,100)
+                'user_id' => rand(1,10)
             ]);
         }
     }

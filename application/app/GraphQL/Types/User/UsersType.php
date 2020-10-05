@@ -20,7 +20,8 @@ class UsersType extends GraphQLType
         return [
             'id' => [
                 'type' => Type::nonNull(Type::int()),
-                'description' => 'The id of the user'
+                'description' => 'The id of the user',
+                // 'alias' => 'user_id',
             ],
             'email' => [
                 'type' => Type::string(),
@@ -41,8 +42,12 @@ class UsersType extends GraphQLType
                         'type' => Type::string(),
                     ],
                 ],
-                'query'         => function (array $args, $query, $ctx) {
-                    return $query->where('products.title',"=", $args['title']);
+                'query'         => function(array $args, $query, $ctx) {
+                    // return $query->with('products');
+                    if(isset($args['title'])){
+                        return $query->where('products.title',"=", $args['title']);
+                    }
+                    return $query;
                 }
             ]
         ];

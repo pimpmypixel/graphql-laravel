@@ -36,6 +36,14 @@ return [
         'users'  => UsersType::class,
         'products'  => ProductsType::class,
     ],
+    'lazyload_types' => false,
     'error_formatter' => ['\Rebing\GraphQL\GraphQL', 'formatError'],
-    'params_key'    => 'params'
+    'errors_handler' => ['\Rebing\GraphQL\GraphQL', 'handleErrors'],
+    'params_key'    => 'variables',
+    'security' => [
+        'query_max_complexity'  => null,
+        'query_max_depth'       => null,
+        'disable_introspection' => false,
+    ],
+    // 'params_key'    => 'params'
 ];

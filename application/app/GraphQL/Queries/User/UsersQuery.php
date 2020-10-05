@@ -9,6 +9,9 @@ use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query;
 use Rebing\GraphQL\Support\SelectFields;
 
+use Closure;
+use GraphQL\Type\Definition\ResolveInfo;
+
 class UsersQuery extends Query
 {
     protected $attributes = [
@@ -35,9 +38,9 @@ class UsersQuery extends Query
         ];
     }
 
-
-    public function resolve($root, $args, $fields): Collection
+    public function resolve($root, $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields): Collection
     {
+
         $where = function ($query) use ($args) {
             if (isset($args['id'])) {
                 $query->where('id', $args['id']);
@@ -47,11 +50,13 @@ class UsersQuery extends Query
             }
         };
 
-        // $users = User::with(array_keys($fields->getRelations()))
-        //     ->where($where)
-        //     ->select($fields->getSelect())
-        //     ->get();
+        $fields = $getSelectFields();
+        $select = $fields->getSelect();
+        $with = $fields->getRelations();
 
-        return User::where($where)->get();
+        return User::select($select)
+        ->where($where)
+        ->with($with)
+        ->get();
     }
 }
