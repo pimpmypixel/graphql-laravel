@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "47c0a959-0e2d-4e5b-ba75-0efa44cfa730",
+		"name": "GraphQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvZ3JhcGhxbFwvbG9naW4iLCJpYXQiOjE2MDE5MzM2MTAsImV4cCI6MTYwMTkzNzIxMCwibmJmIjoxNjAxOTMzNjEwLCJqdGkiOiJWUk9Fc0lHZkVDT3V3VU5rIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Bh9ap1gscR2rRu7sZMryMNoz1p0lWN-8uHxKyLC_YRo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "a@b.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "secret",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/graphql/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"graphql",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvZ3JhcGhxbFwvbG9naW4iLCJpYXQiOjE2MDE5MzI4MjgsImV4cCI6MTYwMTkzNjQyOCwibmJmIjoxNjAxOTMyODI4LCJqdGkiOiJZUWg3U01zOFl5OGVtNExoIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Q4Ba1nL38h-SdfEA4lOa9WoXikPdhc_tGvC-m_ayWrw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "XDEBUG_SESSION",
+						"type": "text",
+						"value": "PHPSTORM"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation test01NewUser {\n    NewUser(name: \"hej\",\n        email: \"a@b.dk\",\n        password: \"password\"\n        ){\n            id \n            name \n            email\n    }\n}",
+						"variables": ""
+					},
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/graphql/query?XDEBUG_SESSION_START=PHPSTORM",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"graphql",
+						"query"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "itzel24@gmail.com",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "secret",
+							"disabled": true
+						},
+						{
+							"key": "XDEBUG_SESSION_START",
+							"value": "PHPSTORM"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvZ3JhcGhxbFwvbG9naW4iLCJpYXQiOjE2MDE5MzM2MTAsImV4cCI6MTYwMTkzNzIxMCwibmJmIjoxNjAxOTMzNjEwLCJqdGkiOiJWUk9Fc0lHZkVDT3V3VU5rIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Bh9ap1gscR2rRu7sZMryMNoz1p0lWN-8uHxKyLC_YRo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query MyUsers{\n    Users{\n        id\n        name\n        email\n    }\n}",
+						"variables": ""
+					},
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/graphql/query?XDEBUG_SESSION_START=PHPSTORM",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"graphql",
+						"query"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION_START",
+							"value": "PHPSTORM"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "XDEBUG_SESSION",
+						"value": "PHPSTORM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation DeleteQueryABC {\n    DeleteUser(id: 203)\n}",
+						"variables": ""
+					},
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/graphql/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"graphql",
+						"query"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "itzel24@gmail.com",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "secret",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "XDEBUG_SESSION",
+						"value": "PHPSTORM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query MySixUser{\n    # Users(id:6){\n    Users(id:4){\n        id\n        name\n        email\n        products(title: \"shoes\"){\n      #  products{\n            id\n            title\n            description\n        }\n    }\n}",
+						"variables": ""
+					},
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/graphql/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"graphql",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvZ3JhcGhxbFwvbG9naW4iLCJpYXQiOjE2MDE5MzM2MTAsImV4cCI6MTYwMTkzNzIxMCwibmJmIjoxNjAxOTMzNjEwLCJqdGkiOiJWUk9Fc0lHZkVDT3V3VU5rIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Bh9ap1gscR2rRu7sZMryMNoz1p0lWN-8uHxKyLC_YRo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "XDEBUG_SESSION",
+						"type": "text",
+						"value": "PHPSTORM"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query MyProfile{\n    # Users(id:6){\n    MyProfile{\n        id\n        name\n        email\n    }\n}",
+						"variables": ""
+					},
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/graphql/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"graphql",
+						"query"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
