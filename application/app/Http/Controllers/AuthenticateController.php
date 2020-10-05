@@ -18,10 +18,10 @@ class AuthenticateController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');
-        dd($credentials);
 
         try {
-            if (! $token = $this->jwt->attempt($credentials)) {
+            $token = $this->jwt->attempt($credentials);
+            if (!$token) {
                 return response()->json(['error' => 'invalid_credentials'], 401);
             }
         } catch (JWTException $e) {

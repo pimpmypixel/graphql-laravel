@@ -178,7 +178,7 @@ return [
         // Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Rebing\GraphQL\GraphQLServiceProvider::class,
         // Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class
-    Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
     ],
 
@@ -232,7 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'GraphQL' => \Rebing\GraphQL\Support\Facades\GraphQL::class,
-        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class, 
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
     ],
 
